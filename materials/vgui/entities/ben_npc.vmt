@@ -1,0 +1,5 @@
+"UnlitGeneric"
+{
+	"$basetexture" "npc_ben/ben_npc"
+	"$alphatest" 1
+}
