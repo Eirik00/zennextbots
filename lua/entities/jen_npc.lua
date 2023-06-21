@@ -6,14 +6,14 @@ ENT.Base = "base_nextbot"
 ENT.PhysgunDisabled = true
 ENT.AutomaticFrameAdvance = false
 
-ENT.JumpSound = Sound("pen_npc/imabouttoblow.mp3")
-ENT.JumpHighSound = Sound("pen_npc/imabouttoblow.mp3")
+ENT.JumpSound = Sound("jen_npc/imabouttoblow.mp3")
+ENT.JumpHighSound = Sound("jen_npc/imabouttoblow.mp3")
 ENT.TauntSounds = {
-	Sound("pen_npc/attack1.mp3"),
-	Sound("pen_npc/attack2.mp3"),
-	Sound("pen_npc/attack3.mp3")
+	Sound("jen_npc/attack1.mp3"),
+	Sound("jen_npc/attack2.mp3"),
+	Sound("jen_npc/attack3.mp3")
 }
-local chaseMusic = Sound("pen_npc/chase.mp3")
+local chaseMusic = Sound("jen_npc/chase.mp3")
 
 local workshopID = "174117071"
 
@@ -24,9 +24,9 @@ if SERVER then -- SERVER --
 else -- CLIENT --
     
      --[ CHANGE MODEL IMAGE ] --
-    local MAT_pen = Material("npc_pen/pen_npc")
-    killicon.Add("pen_npc", "npc_pen/killicon", color_white)
-    language.Add("pen_npc", "pen ")
+    local MAT_jen = Material("npc_jen/jen_npc")
+    killicon.Add("jen_npc", "npc_jen/killicon", color_white)
+    language.Add("jen_npc", "jen ")
 
     
     -- [][] IGNORE FROM HERE [][] --
@@ -34,33 +34,33 @@ else -- CLIENT --
             include("cl_entbehaviour.lua")
 
             local panicMusic = nil
-            local lastPanic = 0 -- The last time we were in music range of a pen.
+            local lastPanic = 0 -- The last time we were in music range of a jen.
 
 
-            -- If another pen comes in range before this delay is up,
+            -- If another jen comes in range before this delay is up,
             -- the music will continue where it left off.
             local MUSIC_RESTART_DELAY = 2
 
-            -- Beyond this distance, pens do not count to music volume.
+            -- Beyond this distance, jens do not count to music volume.
             local MUSIC_CUTOFF_DISTANCE = 1000
 
-            -- Max volume is achieved when MUSIC_pen_PANIC_COUNT pens are this close,
+            -- Max volume is achieved when MUSIC_jen_PANIC_COUNT jens are this close,
             -- or an equivalent score.
             local MUSIC_PANIC_DISTANCE = 200
 
-             -- That's a lot of pen.
-            local MUSIC_pen_PANIC_COUNT = 8
+             -- That's a lot of jen.
+            local MUSIC_jen_PANIC_COUNT = 8
 
-            local MUSIC_pen_MAX_DISTANCE_SCORE = (MUSIC_CUTOFF_DISTANCE - MUSIC_PANIC_DISTANCE) * MUSIC_pen_PANIC_COUNT
+            local MUSIC_jen_MAX_DISTANCE_SCORE = (MUSIC_CUTOFF_DISTANCE - MUSIC_PANIC_DISTANCE) * MUSIC_jen_PANIC_COUNT
 
             --TODO: Why don't these flags show up? Bug? Documentation would be lovely.
-            local pen_npc_music_volume = CreateConVar("pen_npc_music_volume", 1, bit.bor(FCVAR_DEMO, FCVAR_ARCHIVE), "Maximum music volume when being chased by pen. (0-1, where 0 is muted)")
+            local jen_npc_music_volume = CreateConVar("jen_npc_music_volume", 1, bit.bor(FCVAR_DEMO, FCVAR_ARCHIVE), "Maximum music volume when being chased by jen. (0-1, where 0 is muted)")
 
             local function updatePanicMusic()
-                if #ents.FindByClass("pen_npc") == 0 then
+                if #ents.FindByClass("jen_npc") == 0 then
                     -- Whoops. No need to run for now.
                     DevPrint(4, "Halting music timer.")
-                    timer.Remove("penPanicMusicUpdate")
+                    timer.Remove("jenPanicMusicUpdate")
 
                     if panicMusic ~= nil then
                         panicMusic:Stop()
@@ -78,7 +78,7 @@ else -- CLIENT --
                     end
                 end
 
-                local userVolume = math.Clamp(pen_npc_music_volume:GetFloat(), 0, 1)
+                local userVolume = math.Clamp(jen_npc_music_volume:GetFloat(), 0, 1)
                 if userVolume == 0 or not IsValid(LocalPlayer()) then
                     panicMusic:Stop()
                     return
@@ -87,7 +87,7 @@ else -- CLIENT --
                 local totalDistanceScore = 0
                 local nearEntities = ents.FindInSphere(LocalPlayer():GetPos(), 1000)
                 for _, ent in pairs(nearEntities) do
-                    if IsValid(ent) and ent:GetClass() == "pen_npc" then
+                    if IsValid(ent) and ent:GetClass() == "jen_npc" then
                         local distanceScore = math.max(0, MUSIC_CUTOFF_DISTANCE
                             - LocalPlayer():GetPos():Distance(ent:GetPos()))
                         totalDistanceScore = totalDistanceScore + distanceScore
@@ -95,7 +95,7 @@ else -- CLIENT --
                 end
 
                 local musicVolume = math.min(1,
-                    totalDistanceScore / MUSIC_pen_MAX_DISTANCE_SCORE)
+                    totalDistanceScore / MUSIC_jen_MAX_DISTANCE_SCORE)
 
                 local shouldRestartMusic = (CurTime() - lastPanic >= MUSIC_RESTART_DELAY)
                 if musicVolume > 0 then
@@ -104,7 +104,7 @@ else -- CLIENT --
                     end
 
                     if not LocalPlayer():Alive() then
-                        -- Quiet down so we can hear pen taunt us.
+                        -- Quiet down so we can hear jen taunt us.
                         musicVolume = musicVolume / 4
                     end
 
@@ -127,8 +127,8 @@ else -- CLIENT --
 
             local REPEAT_FOREVER = 0
             local function startTimer()
-                if not timer.Exists("penPanicMusicUpdate") then
-                    timer.Create("penPanicMusicUpdate", 0.05, REPEAT_FOREVER,
+                if not timer.Exists("jenPanicMusicUpdate") then
+                    timer.Create("jenPanicMusicUpdate", 0.05, REPEAT_FOREVER,
                         updatePanicMusic)
                     --DevPrint(4, "Beginning music timer.")
                 end
@@ -150,9 +150,9 @@ else -- CLIENT --
 
     local DRAW_OFFSET = SPRITE_SIZE / 2 * vector_up
     function ENT:DrawTranslucent()
-        render.SetMaterial(MAT_pen)
+        render.SetMaterial(MAT_jen)
 
-        -- Get the normal vector from pen to the player's eyes, and then compute
+        -- Get the normal vector from jen to the player's eyes, and then compute
         -- a corresponding projection onto the xy-plane.
         local pos = self:GetPos() + DRAW_OFFSET
         local normal = EyePos() - pos
@@ -160,7 +160,7 @@ else -- CLIENT --
         local xyNormal = Vector(normal.x, normal.y, 0)
         xyNormal:Normalize()
 
-        -- pen should only look 1/3 of the way up to the player so that they
+        -- jen should only look 1/3 of the way up to the player so that they
         -- don't appear to lay flat from above.
         local pitch = math.acos(math.Clamp(normal:Dot(xyNormal), -1, 1)) / 3
         local cos = math.cos(pitch)
@@ -179,9 +179,9 @@ end
 --
 -- List the NPC as spawnable.
 --
-list.Set("NPC", "pen_npc", {
-	Name = "pen", -- ingame npc name
-	Class = "pen_npc", 
+list.Set("NPC", "jen_npc", {
+	Name = "jen", -- ingame npc name
+	Class = "jen_npc", 
 	Category = "Nextbot",
 	AdminOnly = true
 })
