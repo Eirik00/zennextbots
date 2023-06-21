@@ -1,5 +1,5 @@
 "UnlitGeneric"
 {
-	"$basetexture" "npc_sirshappidy/sirshappidy_npc"
-	"$translucent" 1
+	"$basetexture" "vgui/entities/sirshappidy_npc"
+	"$alphatest" 1
 }
