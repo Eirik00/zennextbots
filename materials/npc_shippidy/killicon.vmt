@@ -1,0 +1,5 @@
+"UnlitGeneric"
+{
+	"$basetexture" "npc_shippidy/shippidy_npc"
+	"$vertexalpha" 1
+}

@@ -1,0 +1,5 @@
+"UnlitGeneric"
+{
+	"$basetexture" "npc_epicroman/epicroman_npc"
+	"$vertexalpha" 1
+}
