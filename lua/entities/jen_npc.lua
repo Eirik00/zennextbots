@@ -42,11 +42,11 @@ else -- CLIENT --
             local MUSIC_RESTART_DELAY = 2
 
             -- Beyond this distance, jens do not count to music volume.
-            local MUSIC_CUTOFF_DISTANCE = 1000
+            local MUSIC_CUTOFF_DISTANCE = 1600
 
             -- Max volume is achieved when MUSIC_jen_PANIC_COUNT jens are this close,
             -- or an equivalent score.
-            local MUSIC_PANIC_DISTANCE = 200
+            local MUSIC_PANIC_DISTANCE = 350
 
              -- That's a lot of jen.
             local MUSIC_jen_PANIC_COUNT = 8

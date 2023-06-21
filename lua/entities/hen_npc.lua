@@ -39,11 +39,11 @@ else -- CLIENT --
             local MUSIC_RESTART_DELAY = 2
 
             -- Beyond this distance, hens do not count to music volume.
-            local MUSIC_CUTOFF_DISTANCE = 1000
+            local MUSIC_CUTOFF_DISTANCE = 1500
 
             -- Max volume is achieved when MUSIC_hen_PANIC_COUNT hens are this close,
             -- or an equivalent score.
-            local MUSIC_PANIC_DISTANCE = 200
+            local MUSIC_PANIC_DISTANCE = 300
 
              -- That's a lot of hen.
             local MUSIC_hen_PANIC_COUNT = 8
