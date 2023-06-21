@@ -11,7 +11,8 @@ ENT.JumpHighSound = Sound("jen_npc/imabouttoblow.mp3")
 ENT.TauntSounds = {
 	Sound("jen_npc/attack1.mp3"),
 	Sound("jen_npc/attack2.mp3"),
-	Sound("jen_npc/attack3.mp3")
+	Sound("jen_npc/attack3.mp3"),
+    Sound("jen_npc/attack4.mp3")
 }
 local chaseMusic = Sound("jen_npc/chase.mp3")
 
