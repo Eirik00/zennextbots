@@ -182,6 +182,6 @@ end
 list.Set("NPC", "pen_npc", {
 	Name = "pen", -- ingame npc name
 	Class = "pen_npc", 
-	Category = "ZenBot",
+	Category = "[TheBoys] ZenBot",
 	AdminOnly = true
 })
