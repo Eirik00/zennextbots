@@ -1,0 +1,5 @@
+"UnlitGeneric"
+{
+	"$basetexture" "npc_jen/jen_npc"
+	"$vertexalpha" 1
+}
