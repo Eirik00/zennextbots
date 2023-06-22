@@ -1,4 +1,6 @@
 if SERVER then
+    local workshopID = "2990376659"
+    
     local tbois_npc_acquire_distance = CreateConVar("tbois_npc_acquire_distance", 10000, FCVAR_NONE, "The maximum distance at which pen will chase a target.")
 
     local tbois_npc_spawn_protect = CreateConVar("tbois_npc_spawn_protect", 1, FCVAR_NONE, "If set to 1, pen will not target players or hide within 200 units of \z a spawn point.")

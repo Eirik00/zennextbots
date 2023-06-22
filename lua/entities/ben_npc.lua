@@ -1,6 +1,6 @@
 
 AddCSLuaFile()
-
+AddCSLuaFile("cl_entbehaviour.lua")
 ENT.Base = "base_nextbot"
 
 ENT.PhysgunDisabled = true
