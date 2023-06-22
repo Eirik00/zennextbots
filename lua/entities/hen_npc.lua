@@ -7,6 +7,8 @@ ENT.Base = "base_nextbot"
 ENT.PhysgunDisabled = true
 ENT.AutomaticFrameAdvance = false
 
+ENT.JumpSound = Sound("hen_npc/imabouttoblow.mp3")
+ENT.JumpHighSound = Sound("hen_npc/imabouttoblow.mp3")
 ENT.TauntSounds = {
 	Sound("hen_npc/attack1.mp3"),
     Sound("hen_npc/attack2.mp3")

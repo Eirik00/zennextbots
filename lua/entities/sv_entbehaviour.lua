@@ -359,10 +359,16 @@ if SERVER then
         -- In Sandbox, players are faster in singleplayer.
         self.loco:SetDesiredSpeed(game.SinglePlayer() and 650 or 500)
 
-        -- Take corners a bit sharp.
+        -- SetSpeed
         self.loco:SetAcceleration(500)
         self.loco:SetDeceleration(500)
-
+        --How to change speed to spesific npc
+        if self:GetClass() == "shredy_npc" then
+            self.loco:SetDesiredSpeed(2000)
+            
+            self.loco:SetAcceleration(50000)
+            self.loco:SetDeceleration(50000)
+        end
         -- This isn't really important because we reset it all the time anyway.
         self.loco:SetJumpHeight(300)
 
