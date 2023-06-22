@@ -1,5 +1,6 @@
 
 AddCSLuaFile()
+AddCSLuaFile("cl_entbehaviour.lua")
 
 ENT.Base = "base_nextbot"
 
@@ -11,8 +12,6 @@ ENT.TauntSounds = {
     Sound("hen_npc/attack2.mp3")
 }
 local chaseMusic = Sound("hen_npc/chase.mp3")
-
-local workshopID = "174117071"
 
 local IsValid = IsValid
 
