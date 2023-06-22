@@ -180,7 +180,7 @@ end
 -- List the NPC as spawnable.
 --
 list.Set("NPC", "epicroman_npc", {
-	Name = "epicroman", -- ingame npc name
+	Name = "epic roman", -- ingame npc name
 	Class = "epicroman_npc", 
 	Category = "[TheBoys] RomanBot",
 	AdminOnly = true

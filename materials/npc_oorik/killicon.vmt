@@ -1,0 +1,5 @@
+"UnlitGeneric"
+{
+	"$basetexture" "npc_oorik/oorik_npc"
+	"$vertexalpha" 1
+}
